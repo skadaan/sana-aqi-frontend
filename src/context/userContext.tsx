@@ -19,7 +19,7 @@ export const UserProvider = (props: any) => {
                 },
             };
 
-            const response = await fetch("/user/me", requestOptions);
+            const response = await fetch(`https://sana-aqi.herokuapp.com/user/me`, requestOptions);
             if (!response.ok) {
                 setToken(null);
             }

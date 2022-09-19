@@ -17,8 +17,6 @@ import { useContext, useState } from 'react';
 import ErrorMessage from '../components/ErrorMessage';
 import { UserContext } from '../context/userContext';
 
-require('dotenv').config()
-
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -36,7 +34,7 @@ const Login = () => {
             ),
         };
 
-        const response = await fetch(`${process.env.API_URL}/login`, requestOptions);
+        const response = await fetch(`https://sana-aqi.herokuapp.com/login`, requestOptions);
         const data = await response.json();
 
         if (!response.ok) {

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import "bulma/css/bulma.min.css"
 import { ChakraProvider } from '@chakra-ui/react'
+import 'dotenv/config'
 
 import App from './App';
 
