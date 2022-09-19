@@ -40,7 +40,7 @@ const Register = () => {
             body: JSON.stringify({ email: email, password: password }),
         };
 
-        const response = await fetch("/user/", requestOptions);
+        const response = await fetch("https://sana-aqi.herokuapp.com/user/", requestOptions);
         const data = await response.json();
 
         if (!response.ok) {
