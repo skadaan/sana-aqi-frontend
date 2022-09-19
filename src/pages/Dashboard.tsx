@@ -8,7 +8,7 @@ import {
     StatNumber,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { GrDocumentMissing, GrStatusGood, GrStatusWarning } from 'react-icons/gr';
 
 interface StatsCardProps {
@@ -19,7 +19,7 @@ const Location = (props: StatsCardProps) => {
     const [aqi, setAqi] = useState<string>();
     const { city, threshold } = props;
 
-    const getAQI = async () => {
+    const getAQI = useCallback(async () => {
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -38,11 +38,11 @@ const Location = (props: StatsCardProps) => {
         } else {
             setAqi(data.data.aqi);
         }
-    };
+    }, [city])
 
     useEffect(() => {
         getAQI()
-    }, [])
+    }, [getAQI])
 
 
     return (
@@ -103,7 +103,7 @@ const Dashboard = () => {
             }
         }
         fetchLocations();
-    }, [])
+    }, [token])
 
     return (
         <Box maxW="7xl" mx={'auto'} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
