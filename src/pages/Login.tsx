@@ -17,6 +17,9 @@ import { useContext, useState } from 'react';
 import ErrorMessage from '../components/ErrorMessage';
 import { UserContext } from '../context/userContext';
 
+require('dotenv').config()
+
+
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
@@ -33,7 +36,7 @@ const Login = () => {
             ),
         };
 
-        const response = await fetch("/login", requestOptions);
+        const response = await fetch(`${process.env.API_URL}/login`, requestOptions);
         const data = await response.json();
 
         if (!response.ok) {

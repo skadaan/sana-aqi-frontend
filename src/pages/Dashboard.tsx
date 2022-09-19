@@ -11,6 +11,9 @@ import {
 import { useCallback, useEffect, useState } from 'react';
 import { GrDocumentMissing, GrStatusGood, GrStatusWarning } from 'react-icons/gr';
 
+require('dotenv').config()
+
+
 interface StatsCardProps {
     city: string;
     threshold: string;
@@ -31,7 +34,7 @@ const Location = (props: StatsCardProps) => {
             },
         };
 
-        const response = await fetch(`/location/aqi?city=${city}`, requestOptions)
+        const response = await fetch(`${process.env.API_URL}/location/aqi?city=${city}`, requestOptions)
         const data = await response.json();
         if (!response.ok) {
             console.log("something messed up");
@@ -94,7 +97,7 @@ const Dashboard = () => {
                     Authorization: "Bearer " + token,
                 },
             }
-            const response = await fetch("/location", requestOptions);
+            const response = await fetch(`${process.env.API_URL}/location`, requestOptions);
             const data = await response.json();
             if (!response.ok) {
                 console.log('error ')

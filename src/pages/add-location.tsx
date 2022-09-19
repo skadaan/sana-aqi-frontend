@@ -12,6 +12,9 @@ import {
 import { CheckIcon } from '@chakra-ui/icons';
 import ErrorMessage from '../components/ErrorMessage';
 
+require('dotenv').config()
+
+
 const AddLocation = () => {
     const [city, setCity] = useState('');
     const [threshold, setThreshold] = useState('');
@@ -44,7 +47,7 @@ const AddLocation = () => {
             body: JSON.stringify({ city: city, threshold: threshold }),
         };
 
-        const response = await fetch("/location/", requestOptions);
+        const response = await fetch(`${process.env.API_URL}/location/`, requestOptions);
         const data = await response.json();
 
         if (!response.ok) {
